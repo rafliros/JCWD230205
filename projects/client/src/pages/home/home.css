@@ -1,0 +1,10 @@
+.default{
+    background-image: url('../../supports/assets/defaultBg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover ;
+    height: 520px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
