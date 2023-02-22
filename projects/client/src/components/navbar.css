@@ -1,0 +1,17 @@
+li.navhov {
+    width: 80px;
+}
+
+.navhov::after {
+    content: '';
+    display:flex ;
+    width: 0;
+    height: 3px;
+    background-color: rgb(30, 192, 197);
+    transition: 0.5s;
+}
+
+.navhov:hover::after {  
+    width: 100%;  
+ }
+

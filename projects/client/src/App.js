@@ -13,22 +13,24 @@ import Rooms from "./pages/rooms/rooms";
 // Import Booking
 import Booking from "./pages/booking/booking";
 
-// Import Contact Us
-// import Contactus from "./pages/rooms/rooms";
-
 // Import Login
 import Login from "./pages/login/login";
 
 // Import Register
 import Signup from "./pages/signup/signup";
 
+// Import Reset
+
+// Import Recovery
+
+// Import Profile
+
 // Import Footer
 import Footer from "./components/footer";
 
-// Import Register
-// import Register from "./pages/register/register";
+// Import Page Not Found
+import Pagenotfound from "./pages/page not found/pagenotfound";
 
-// import axios from 'axios';
 
 export default function App(){
 
@@ -42,8 +44,7 @@ export default function App(){
           <Route path='/booking'  element={<Booking />} /> 
           <Route path='/login'  element={<Login />} />
           <Route path='/signup'  element={<Signup />} />
-          <div>fger</div>
-          {/* <Route path='/contactus'  element={<Contactus />} /> */}
+          <Route path='/pagenotfound'  element={<Pagenotfound />} />
         </Routes>
       <Footer />
     </>

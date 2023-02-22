@@ -21,6 +21,11 @@ app.use(express.json());
 // ===========================
 // NOTE : Add your routes here
 
+// Import Router
+const {usersRouter} = require('./routers')
+app.use('/users', usersRouter)
+// app.use('/booking', bookingRouter)
+
 app.get("/api", (req, res) => {
   res.send(`Hello, this is my API`);
 });
