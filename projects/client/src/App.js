@@ -42,7 +42,6 @@ export default function App(){
           <Route path='/booking'  element={<Booking />} /> 
           <Route path='/login'  element={<Login />} />
           <Route path='/signup'  element={<Signup />} />
-          <div>fger</div>
           {/* <Route path='/contactus'  element={<Contactus />} /> */}
         </Routes>
       <Footer />
