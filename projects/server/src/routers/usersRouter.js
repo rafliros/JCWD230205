@@ -3,7 +3,7 @@ const Router = express.Router()
 
 
 // Import All Controller
-const {usersController} = require('../controllers') // Akan otomatis mengambil file index.js nya
+const {usersController} = require('./../controllers') // Akan otomatis mengambil file index.js nya
 
 // Import jwtVerify
 const {tokenVerify} = require('./../middleware/verifyToken')
@@ -15,7 +15,9 @@ Router.post('/register', usersController.register)
 Router.post('/login', usersController.login)
 
 // // Import Controller Keep-Login
-Router.post('/keep-login', tokenVerify, usersController.keepLogin)
+// Router.post('/keep-login', tokenVerify, usersController.keeplogin)
+
+Router.patch("/activation/:id", usersController.activation)
 
 // /Import Controller logout => POST
 // Router.post('/logout',usersController.logout);

@@ -4,7 +4,8 @@ const { Op } = require('sequelize');
 
 // To generate UID
 const { v4: uuidv4 } = require('uuid');
-
+const fs = require('fs').promises
+const handlebars = require('handlebars')
 // Import models
 const db = require('./../models/index')
 const users = db.users
@@ -14,6 +15,8 @@ const {hashPassword, hashMatch} = require ('./../lib/hash')
 
 // Import Token
 const {createToken} = require ('./../lib/jwt')
+
+const transporter = require( '../helpers/transporter')
 
 module.exports = {
     register: async(req, res) => {
@@ -52,6 +55,17 @@ module.exports = {
             let resCreateUsers = await users.create({id: uuidv4(), name, email, password: await hashPassword (password), phonenumber },{transaction: t})
             console.log(resCreateUsers.dataValues.id)
 
+            // 
+            const template = await fs.readFile('./template/confirmation.html', 'utf-8')
+            const tempalteToCompile = await handlebars.compile(template)
+            const newTemplate = tempalteToCompile({email, url: `http://localhost:3000/activation${resCreateUsers.dataValues.id}`})
+            await transporter.sendMail({
+                from: 'PWD Property',
+                to: email,
+                subject: 'Account Activation',
+                html: newTemplate
+            })
+
             
             // Step-5 Kirim response
             await t.commit()
@@ -61,40 +75,37 @@ module.exports = {
                 data: null
             })
         } catch (error) {
-            await t.commit()
             res.status(500).send({
                 isError: true, 
-                message: error.errors[0].message, 
+                message: error, 
                 data: null
             })
+            console.log(error)
         }
     },
 
     login: async(req, res) => {
+        let {usernameOrPassword, password} = req.query
         try {
-        // Step-1 Ambil value dari req.body
-        let {email, password, phonenumber} = req.body
-
+        let response = await users.findOne({
+            where: {
+                [Op.or]:[{username: usernameOrEmail}, {email:usernameOrEmail}]
+            }
+        })
         // Step-2 Cari email di database / get data di email
         let findEmailAndPassword = await users.findOne({
             where: {email}
         })
-        
-        // Step-2 Cari email / phonenumber di database / get data di email / phonenumber
-    //     let findEmailAndPassword = await userAccount.findOne({
-    //         where: { [Op.or]: [
-    //       { email: email },
-    //       { phonenumber:  phonenumber }
-    //     ]
-    //   }
-    //     })
-
-        // Step-2 Cari password di database / get data di password
-        let matchPassword = await hashMatch(password, findEmailAndPassword.password) // findEmailAndPassword.password -- untuk get password database  // password -- untuk get password login
-        // console.log(matchPassword) Untuk check Password di input true or false kalau ada
-        if(matchPassword === false) return res.status(404).send({
+         if(!response) return res.status(404).send({
             isError: true,
-            message: 'Password Not Found',
+            message: "password not match",
+            data: null
+         })
+
+        let hashMatchResult = await hashMatch(password, response.password)
+        if(hashMatchResult === false)return res.status(404).send({
+            isError: true,
+            message: "password not match",
             data: null
         })
 
@@ -174,6 +185,28 @@ module.exports = {
     //     }
     // }),
     
+    activation: async(req, res) => {
+        try {
+            let id = req.params.id
+
+            await users.update(
+                {notfications: "confirmed"},
+                {
+                    where: {id}
+                }
+            )
+
+            res.status(401).send({
+                isError: false,
+                message: "account activated",
+                data: null
+            })
+        } catch (error) {
+            
+        }
+    }
+
+
 }   
 
 

@@ -1,5 +1,6 @@
 // React
 import {useRef, useState} from 'react';
+import toast, {Toaster} from 'react-hot-toast'
 
 // Import Link Router-Dom
 import {Link} from 'react-router-dom';
@@ -46,12 +47,11 @@ export default function Signup(props){
 
             setDisabledButton(true)
             let result = await axios.post(`http://localhost:8000/users/register`, {name: inputname, email: inputEmail, phonenumber: inputPhonenumber, password: inputPassword})
-            
-            name.current.value = ''
-
+            console.log(result)
+            toast(result.data.message)
         } catch (error) {
             console.log(error)
-            setMessage(error.response.data.message)
+            // setMessage(result.data.message)
         }finally{
             setDisabledButton(false)
         }
@@ -99,7 +99,6 @@ export default function Signup(props){
                 <RiLock2Fill/>
                 <input ref={password} className="pl-2 w-full outline-none border-none" type="password"  placeholder="Password" />   
             </div>
-               
             </div>
                     <div className="text-center mt-6">
                         <button disabled={disabledButton} onClick={onSubmit} className="py-1.5 w-full  text-xl font-medium text-white bg-[#09958C] rounded-3xl">Sign In</button>
@@ -122,11 +121,8 @@ export default function Signup(props){
                 </div>
                 
             </div>
-                
-            
-
              </div>
-
+            <Toaster/>
         </div>
     )
 }

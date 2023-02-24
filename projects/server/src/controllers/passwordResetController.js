@@ -102,3 +102,18 @@
 
 
 // } 
+
+const crypto = require('crypto')
+const transporter = require('./../helpers/transporter')
+
+module.exports = {
+    forgotpassword: async(req, res) => {
+        try {
+            const {email} = req.body
+
+            
+        } catch (error) {
+            
+        }
+    }
+}
