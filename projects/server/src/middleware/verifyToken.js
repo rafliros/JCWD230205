@@ -2,7 +2,7 @@ const { validateToken } = require('./../lib/jwt')
 
 module.exports = {
     tokenVerify: (req, res, next) => {
-        let {token} = req.body
+        let {token} = req.headers
 
         if(!token){
             return res.status(401).send({

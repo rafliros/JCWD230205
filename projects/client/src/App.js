@@ -31,6 +31,12 @@ import Footer from "./components/footer";
 // Import Page Not Found
 import Pagenotfound from "./pages/page not found/pagenotfound";
 
+import Activation from "./../src/activation/activation"
+
+import ForgotPassword from "./../src/forgotpassword/forgot"
+
+import ResetPassword from "./../src/forgotpassword/resetpassword"
+
 
 export default function App(){
 
@@ -45,6 +51,9 @@ export default function App(){
           <Route path='/login'  element={<Login />} />
           <Route path='/signup'  element={<Signup />} />
           <Route path='/pagenotfound'  element={<Pagenotfound />} />
+          <Route path="/activation/:id" element={<Activation/>}/>
+          <Route path="/forgotpassword" element={<ForgotPassword/>}/>
+          <Route path="/resetpassword" element={<ResetPassword/>}/>
         </Routes>
       <Footer />
     </>

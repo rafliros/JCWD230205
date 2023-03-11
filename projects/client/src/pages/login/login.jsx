@@ -28,7 +28,7 @@ export default function Login(props){
         <div>
 	
 	
-	<div class="py-6 px-12 bg-white shadow-xl z-20">
+	<div className="py-6 px-12 bg-white shadow-xl z-20">
         <div className=" float-right" ><FaTimes/></div>
 		    <div>
                 <div className="flex justify-center mt-4">
@@ -52,7 +52,10 @@ export default function Login(props){
                 <input ref={password} className="pl-2 w-full outline-none border-none" type="password"  placeholder="Password" />   
             </div>
             
-            <span className="text-sm text-blue-600 hover:text-sky-500 font-medium ">Forgot Password</span>
+            {/* <span className="text-sm text-blue-600 hover:text-sky-500 font-medium ">Forgot Password?</span> */}
+            <Link to="/forgotpassword">
+                Forgot Password?
+            </Link>
 
             
     </div>
@@ -61,8 +64,8 @@ export default function Login(props){
                 <p className="mt-4 text-sm">Or Sign Up With</p>
 
                 <div className='md:flex flex-col items-center  mt-2 text-[#09958C]'>
-                    <div class="container pt-1">
-                        <div class="mb-1 flex justify-center gap-5 ">
+                    <div className="container pt-1">
+                        <div className="mb-1 flex justify-center gap-5 ">
                             <span className="my-2"><AiFillGoogleCircle size={28}/></span>
                             <span className="my-2"><AiFillTwitterCircle size={28}/></span>
                             <span className="my-2"><FaFacebook size={26}/></span>
