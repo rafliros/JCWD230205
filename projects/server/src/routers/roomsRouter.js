@@ -3,7 +3,8 @@ const Router = express.Router()
 
 
 // Import All Controller
-const {usersController} = require('../controllers') // Akan otomatis mengambil file index.js nya
+const {} = require('../controllers') // Akan otomatis mengambil file index.js nya
+
 
 
 

@@ -45,15 +45,9 @@ export default function Activation(){
                 {/* <button  className="py-1.5 w-full  text-xl font-medium text-white bg-[#09958C] rounded-3xl">Get Stared</button> */}
             </div>
             </div>
-
             </div>
-                
-                
-
             </div>
-
             </div>
-
         </>
     )
 }

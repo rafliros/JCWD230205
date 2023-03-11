@@ -52,7 +52,10 @@ export default function Login(props){
                 <input ref={password} className="pl-2 w-full outline-none border-none" type="password"  placeholder="Password" />   
             </div>
             
-            <span className="text-sm text-blue-600 hover:text-sky-500 font-medium ">Forgot Password</span>
+            {/* <span className="text-sm text-blue-600 hover:text-sky-500 font-medium ">Forgot Password?</span> */}
+            <Link to="/forgotpassword">
+                Forgot Password?
+            </Link>
 
             
     </div>

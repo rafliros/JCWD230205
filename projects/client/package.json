@@ -26,6 +26,7 @@
     "react-scripts": "5.0.1",
     "router-dom": "^2.2.10",
     "styled-components": "^5.3.6",
+    "toast": "^0.5.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -54,5 +55,10 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.2.7"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "tailwind.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
